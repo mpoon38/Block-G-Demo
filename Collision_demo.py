@@ -24,7 +24,7 @@ running = True
 collision = False
 
 while running:
-	pygame.time.delay(30)  # Control speed
+	pygame.time.delay(10)  # Control speed
     
 	# Handle events
 	for event in pygame.event.get():
