@@ -19,7 +19,7 @@ enemy_types = [
 
 enemies = []
 # Spawn an enemy every second
-enemy_spawn_event = pygame.USEREVENT + 1
+enemy_spawn_event = pygame.USEREVENT + 1 #It lets your code recognize special events that you make (not just keyboard or mouse events).
 pygame.time.set_timer(enemy_spawn_event, 1000)
 
 while running:
@@ -36,7 +36,7 @@ while running:
     for enemy in enemies[:]:
         enemy.move()
         if enemy.rect.y > HEIGHT:
-            enemies.remove(enemy)
+            enemies.remove(enemy) #the enemy’s top is lower than the screen”—the enemy has moved completely off the bottom.
 
     win.fill((0, 0, 0))
     win.blit(player_img, (player_x, player_y))
