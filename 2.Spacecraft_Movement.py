@@ -1,25 +1,56 @@
-player_img = pygame.Surface((50, 40))  # Placeholder rectangle
-player_img.fill((0, 255, 0))           # Green
+import pygame
 
-player_x, player_y = WIDTH // 2, HEIGHT - 60
-player_speed = 5
+pygame.init()
+WIDTH, HEIGHT = 800, 600
+win = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Space Shooter")
+
+# Define player size and speed
+PLAYER_WIDTH, PLAYER_HEIGHT = 50, 40
+PLAYER_SPEED = 1
+
+class Player:
+    def __init__(self):
+        # The player's ship is a rectangle
+        self.rect = pygame.Rect(WIDTH // 2, HEIGHT - 60, PLAYER_WIDTH, PLAYER_HEIGHT)
+        self.speed = PLAYER_SPEED
+
+    def move(self, keys):
+        # Move left if left arrow is pressed and not at the left edge
+        if keys[pygame.K_LEFT] and self.rect.left > 0:
+            self.rect.x -= self.speed
+        # Move right if right arrow is pressed and not at the right edge
+        if keys[pygame.K_RIGHT] and self.rect.right < WIDTH:
+            self.rect.x += self.speed
+        # Move up
+        if keys[pygame.K_UP] and self.rect.top > 0:
+            self.rect.y -= self.speed
+        # Move down
+        if keys[pygame.K_DOWN] and self.rect.bottom < HEIGHT:
+            self.rect.y += self.speed
+
+    def draw(self, surface):
+        # Draw the ship as a green rectangle
+        pygame.draw.rect(surface, (0, 255, 0), self.rect)
+
+player = Player()
+running = True
 
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_LEFT] and player_x > 0:
-        player_x -= player_speed
-    if keys[pygame.K_RIGHT] and player_x < WIDTH - 50:
-        player_x += player_speed
-    if keys[pygame.K_UP] and player_y > 0:
-        player_y -= player_speed
-    if keys[pygame.K_DOWN] and player_y < HEIGHT - 40:
-        player_y += player_speed
+    # Fill background
+    win.fill((10, 10, 30))
 
-    win.fill((0, 0, 0))
-    win.blit(player_img, (player_x, player_y))
+    # Get pressed keys
+    keys = pygame.key.get_pressed()
+
+    # Move and draw the player
+    player.move(keys)
+    player.draw(win)
+
     pygame.display.flip()
-    clock.tick(60)
+
+pygame.quit()
