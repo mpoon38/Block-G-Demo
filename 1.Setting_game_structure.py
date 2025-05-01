@@ -1,5 +1,3 @@
-Help me make step by step lesson to teach students to build up their game by using the following code as a demonstration:
-
 import pygame
 import random
 import sys
