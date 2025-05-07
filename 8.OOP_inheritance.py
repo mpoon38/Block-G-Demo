@@ -8,7 +8,7 @@ class Animal:
 
 # Derived class
 class Dog(Animal):
-    def __init__(self, name, breed):
+    def __init__(self, name, breed): #breed is the new attribute
         super().__init__(name)  # Call the constructor ( __init__ ) of the parent class
         self.breed = breed
 
@@ -17,7 +17,7 @@ class Dog(Animal):
 
 # Another derived class
 class Cat(Animal):
-    def __init__(self, name, color):
+    def __init__(self, name, colour): #colour is the new attribute
         super().__init__(name)
         self.color = color
 
