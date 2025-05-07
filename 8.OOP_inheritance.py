@@ -9,7 +9,7 @@ class Animal:
 # Derived class
 class Dog(Animal):
     def __init__(self, name, breed):
-        super().__init__(name)  # Call the constructor of the parent class, it calls the __init__ method of its parent class 
+        super().__init__(name)  # Call the constructor ( __init__ ) of the parent class
         self.breed = breed
 
     def speak(self):
